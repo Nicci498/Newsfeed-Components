@@ -112,3 +112,50 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createComponent(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  const header = document.createElement('h2');
+  const day = document.createElement('p');
+  const first = document.createElement('p');
+  const second = document.createElement('p');
+  const third = document.createElement('p');
+  const expBtn = document.createElement('span');
+
+  article.classList.add('article');
+  day.classList.add('date');
+  expBtn.classList.add('expandButton');
+
+  article.appendChild(header);
+  article.appendChild(day);
+  article.appendChild(first);
+  article.appendChild(second);
+  article.appendChild(third);
+  article.appendChild(expBtn);
+
+  header.textContent = data.title;
+  day.textContent = data.date;
+  first.textContent = data.firstParagraph;
+  second.textContent = data.secondParagraph;
+  third.textContent = data.thirdParagraph;
+  expBtn.textContent = 'Expand';
+
+  //Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  expBtn.addEventListener('click', (event) => {
+    article.classList.toggle('article-open');
+
+
+})
+
+//Step 3: return the entire component.
+  return article
+
+}
+
+const parent = document.querySelector('.articles');
+data.forEach(item => {
+parent.appendChild(createComponent(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph))
+console.log(item.title);
+
+})
+console.log(parent);
