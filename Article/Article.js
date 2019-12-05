@@ -112,8 +112,21 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+data.push( {
+  title: 'The North Remembers',
+  date: 'Jan 1st, 2019',
+  firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+        hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+        Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
 
-function createComponent(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  secondParagraph: `DRACARYS DRACARYS DRACARYS DRACARYS DRACARYS DRACARYS DRACARYSDRACARYS DRACARYS DRACARYSDRACARYS DRACARYS DRACARYS DRACARYS DRACARYS`,
+
+  thirdParagraph: `Burn them all! Burn them all! Burn them all! Burn them all! Burn them all! Burn them all! Burn them all! Burn them all! Burn them all! Burn them all! Burn them all! Burn them all! Burn them all!`
+});
+
+const parent = document.querySelector('.articles');
+
+function createComponent(data) {
   const article = document.createElement('div');
   const header = document.createElement('h2');
   const day = document.createElement('p');
@@ -132,30 +145,27 @@ function createComponent(title, date, firstParagraph, secondParagraph, thirdPara
   article.appendChild(second);
   article.appendChild(third);
   article.appendChild(expBtn);
-
+  
   header.textContent = data.title;
   day.textContent = data.date;
   first.textContent = data.firstParagraph;
   second.textContent = data.secondParagraph;
   third.textContent = data.thirdParagraph;
   expBtn.textContent = 'Expand';
-
   //Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-  expBtn.addEventListener('click', (event) => {
+  expBtn.addEventListener('click', () => {
     article.classList.toggle('article-open');
-
-
 })
-
 //Step 3: return the entire component.
   return article
-
 }
+// data.forEach(item => {
+// parent.appendChild(createComponent(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph))
+// console.log(item.title);
+// })
+// console.log(parent);
+data.forEach(function (val) {
+  parent.appendChild(createComponent(val))
+  console.log(val)
+});
 
-const parent = document.querySelector('.articles');
-data.forEach(item => {
-parent.appendChild(createComponent(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph))
-console.log(item.title);
-
-})
-console.log(parent);
